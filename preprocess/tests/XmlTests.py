@@ -1,4 +1,7 @@
 import unittest
+
+import pandas as pd
+
 from preprocess.XmlProcessor import XmlProcessor
 from preprocess.XmlTransformer import XmlTransformer
 from preprocess.tests.MockDataLoader import MockDataLoader
@@ -36,7 +39,8 @@ class TestXmlProcessor(unittest.TestCase):
 class TestXmlTransformer(unittest.TestCase):
 
     def setUp(self):
-        self.xml_transformer = XmlTransformer("../../data/match_details.csv", column_mappings=COLUMN_MAPPINGS)
+        data = pd.read_csv("../../data/match_details.csv")
+        self.xml_transformer = XmlTransformer(data, column_mappings=COLUMN_MAPPINGS)
 
     def test_transform_shoton(self):
         transformed_result = self.xml_transformer.transform()
