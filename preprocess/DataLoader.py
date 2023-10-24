@@ -3,7 +3,6 @@ import sqlite3
 import pandas as pd
 
 SQL_QUERY_MATCH = "SELECT m.match_api_id," \
-                  " League.name AS league_name," \
                   " season," \
                   " stage," \
                   " m.date," \
@@ -18,28 +17,28 @@ SQL_QUERY_MATCH = "SELECT m.match_api_id," \
                   " WHEN m.home_team_goal < m.away_team_goal THEN 'A'" \
                   " WHEN m.home_team_goal = m.away_team_goal THEN 'D'" \
                   " END AS result_match," \
-                  " H1.player_api_id as home_player_1," \
-                  " H2.player_api_id as home_player_2," \
-                  " H3.player_api_id as home_player_3," \
-                  " H4.player_api_id as home_player_4," \
-                  " H5.player_api_id as home_player_5," \
-                  " H6.player_api_id as home_player_6," \
-                  " H7.player_api_id as home_player_7," \
-                  " H8.player_api_id as home_player_8," \
-                  " H9.player_api_id as home_player_9," \
-                  " H10.player_api_id as home_player_10," \
-                  " H11.player_api_id as home_player_11," \
-                  " A1.player_api_id as away_player_1," \
-                  " A2.player_api_id as away_player_2," \
-                  " A3.player_api_id as away_player_3," \
-                  " A4.player_api_id as away_player_4," \
-                  " A5.player_api_id as away_player_5," \
-                  " A6.player_api_id as away_player_6," \
-                  " A7.player_api_id as away_player_7," \
-                  " A8.player_api_id as away_player_8," \
-                  " A9.player_api_id as away_player_9," \
-                  " A10.player_api_id as away_player_10," \
-                  " A11.player_api_id as away_player_11" \
+                  " CAST(H1.player_api_id as INT) as home_player_1," \
+                  " CAST(H2.player_api_id as INT) as home_player_2," \
+                  " CAST(H3.player_api_id as INT) as home_player_3," \
+                  " CAST(H4.player_api_id as INT) as home_player_4," \
+                  " CAST(H5.player_api_id as INT) as home_player_5," \
+                  " CAST(H6.player_api_id as INT) as home_player_6," \
+                  " CAST(H7.player_api_id as INT) as home_player_7," \
+                  " CAST(H8.player_api_id as INT) as home_player_8," \
+                  " CAST(H9.player_api_id as INT) as home_player_9," \
+                  " CAST(H10.player_api_id as INT) as home_player_10," \
+                  " CAST(H11.player_api_id as INT) as home_player_11," \
+                  " CAST(A1.player_api_id as INT) as away_player_1," \
+                  " CAST(A2.player_api_id as INT) as away_player_2," \
+                  " CAST(A3.player_api_id as INT) as away_player_3," \
+                  " CAST(A4.player_api_id as INT) as away_player_4," \
+                  " CAST(A5.player_api_id as INT) as away_player_5," \
+                  " CAST(A6.player_api_id as INT) as away_player_6," \
+                  " CAST(A7.player_api_id as INT) as away_player_7," \
+                  " CAST(A8.player_api_id as INT) as away_player_8," \
+                  " CAST(A9.player_api_id as INT) as away_player_9," \
+                  " CAST(A10.player_api_id as INT) as away_player_10," \
+                  " CAST(A11.player_api_id as INT) as away_player_11" \
                   " FROM Match as m" \
                   " JOIN League on League.id = m.league_id" \
                   " LEFT JOIN Team AS HT on HT.team_api_id = m.home_team_api_id" \
