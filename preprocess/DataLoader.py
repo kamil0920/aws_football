@@ -70,7 +70,7 @@ SQL_QUERY_MATCH = "SELECT m.match_api_id," \
                   " ORDER by date"
 SQL_QUERY_PLAYERS = f"SELECT * FROM Player_Attributes"
 
-PATH_DB = r"C:/Users/kamil/Documents/eu_soccer_ml/eu_soccer_database/database.sqlite"
+PATH_DB = "../../../Documents/eu_soccer_ml/eu_soccer_database/database.sqlite"
 CSV_PATH_MATCH = "../data/match_details.csv"
 CSV_PATH_PLAYER_ATTR = "../data/player_attributes.csv"
 
