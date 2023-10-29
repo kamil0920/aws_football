@@ -3,7 +3,6 @@ import unittest
 import pandas as pd
 
 from preprocess.XmlProcessor import XmlProcessor
-from preprocess.XmlTransformer import XmlTransformer
 from preprocess.tests.MockDataLoader import MockDataLoader
 
 # Mock column mappings
@@ -19,7 +18,7 @@ class TestXmlProcessor(unittest.TestCase):
 
     def setUp(self):
         self.data = MockDataLoader().load_data()
-        self.xml_processor = XmlProcessor(self.data, COLUMN_MAPPINGS)
+        self.xml_processor = XmlProcessor(self.data)
 
     def test_parse_shoton(self):
         result = self.xml_processor.process_data()
@@ -34,21 +33,6 @@ class TestXmlProcessor(unittest.TestCase):
         self.assertTrue(len(result) > 0)
         self.assertTrue(result.head(1)['away_possession'][0] == 42)
         self.assertFalse('possession' in result.columns)
-
-
-class TestXmlTransformer(unittest.TestCase):
-
-    def setUp(self):
-        data = pd.read_csv("../../data/match_details.csv")
-        self.xml_transformer = XmlTransformer(data, column_mappings=COLUMN_MAPPINGS)
-
-    def test_transform_shoton(self):
-        transformed_result = self.xml_transformer.transform()
-        self.assertTrue('away_shoton' in transformed_result.columns)
-
-    def test_transform_possession(self):
-        transformed_result = self.xml_transformer.transform()
-        self.assertTrue('away_possession' in transformed_result.columns)
 
 
 if __name__ == '__main__':

@@ -1,10 +1,17 @@
 import xml.etree.cElementTree as et
 
+import pandas as pd
+
+column_mappings = {
+    ('shoton', 'team', 'home'),
+    ('shoton', 'team', 'away'),
+    ('possession', 'homepos', 'home'),
+    ('possession', 'awaypos', 'away')
+}
 
 class XmlProcessor:
-    def __init__(self, data, column_mappings):
-        self.data = data
-        self.column_mappings = column_mappings
+    def __init__(self, data):
+        self.data = pd.DataFrame(data)
 
     def get_team_id(self, match_row, team):
         if team in 'home':
@@ -45,13 +52,13 @@ class XmlProcessor:
             return 0
 
     def process_data(self):
-        for column_mapping in self.column_mappings:
+        for column_mapping in column_mappings:
             column, xml_col, team = column_mapping
 
             new_col_name = f"{team}_{column}"
             self.data[new_col_name] = self.data.apply(lambda row: self.process_xml(row, column, xml_col, team), axis=1)
 
-        unique_columns = list(set([x[0] for x in self.column_mappings]))
+        unique_columns = list(set([x[0] for x in column_mappings]))
         shoton, possession = [col for col in unique_columns if col == 'shoton' or col == 'possession']
         self.data = self.data.drop([shoton, possession], axis=1)
 
