@@ -1,9 +1,7 @@
 import unittest
 
-import pandas as pd
-
-from preprocess.XmlProcessor import XmlProcessor
-from preprocess.tests.MockDataLoader import MockDataLoader
+from preparedata.loaddata.XmlProcessor import XmlProcessor
+from preparedata.loaddata.tests.MockDataLoader import MockDataLoader
 
 # Mock column mappings
 COLUMN_MAPPINGS = {

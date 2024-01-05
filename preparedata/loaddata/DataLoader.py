@@ -70,9 +70,9 @@ SQL_QUERY_MATCH = "SELECT m.match_api_id," \
                   " ORDER by date"
 SQL_QUERY_PLAYERS = f"SELECT * FROM Player_Attributes"
 
-PATH_DB = "../../../Documents/eu_soccer_ml/eu_soccer_database/database.sqlite"
-CSV_PATH_MATCH = "../data/match_details.csv"
-CSV_PATH_PLAYER_ATTR = "../data/player_attributes.csv"
+PATH_DB = "../../../eu_soccer_ml/eu_soccer_database/database.sqlite"
+CSV_PATH_MATCH = "../../data/match_details.csv"
+CSV_PATH_PLAYER_ATTR = "../../data/player_attributes.csv"
 
 
 def table_to_csv(db_path, csv_path, query):
@@ -80,8 +80,8 @@ def table_to_csv(db_path, csv_path, query):
     conn = sqlite3.connect(db_path)
     df = pd.read_sql(query, conn)
 
-    if not os.path.exists('../data'):
-        os.makedirs('../data')
+    if not os.path.exists('../../data'):
+        os.makedirs('../../data')
 
     df.to_csv(csv_path, index=False)
     conn.close()
