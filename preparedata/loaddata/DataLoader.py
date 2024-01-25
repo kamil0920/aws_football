@@ -80,8 +80,9 @@ def table_to_csv(db_path, csv_path, query):
     conn = sqlite3.connect(db_path)
     df = pd.read_sql(query, conn)
 
-    if not os.path.exists('../../data'):
-        os.makedirs('../../data')
+
+    if not os.path.exists('../../data/raw'):
+        os.makedirs('../../data/raw')
 
     df.to_csv(csv_path, index=False)
     conn.close()
