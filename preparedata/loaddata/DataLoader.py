@@ -65,14 +65,14 @@ SQL_QUERY_MATCH = "SELECT m.match_api_id," \
                   " LEFT JOIN Player AS A9 on A9.player_api_id = m.away_player_9" \
                   " LEFT JOIN Player AS A10 on A10.player_api_id = m.away_player_10" \
                   " LEFT JOIN Player AS A11 on A11.player_api_id = m.away_player_11" \
-                  " WHERE League.name LIKE 'England Premier League'" \
+                  " WHERE (League.name = 'England Premier League' OR League.name = 'Spain LIGA BBVA') " \
                   " AND m.possession IS NOT NULL" \
                   " ORDER by date"
 SQL_QUERY_PLAYERS = f"SELECT * FROM Player_Attributes"
 
 PATH_DB = "../../../eu_soccer_ml/eu_soccer_database/database.sqlite"
-CSV_PATH_MATCH = "../../data/match_details.csv"
-CSV_PATH_PLAYER_ATTR = "../../data/player_attributes.csv"
+CSV_PATH_MATCH = "../data/match_details.csv"
+CSV_PATH_PLAYER_ATTR = "../data/player_attributes.csv"
 
 
 def table_to_csv(db_path, csv_path, query):
@@ -81,8 +81,8 @@ def table_to_csv(db_path, csv_path, query):
     df = pd.read_sql(query, conn)
 
 
-    if not os.path.exists('../../data/raw'):
-        os.makedirs('../../data/raw')
+    if not os.path.exists('../data/raw'):
+        os.makedirs('../data/raw')
 
     df.to_csv(csv_path, index=False)
     conn.close()
