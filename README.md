@@ -1,2 +1,2 @@
 # Prepareing data
-Experiment and preapre data aws pipline.
+This project involves experimenting, preparing data, and training an XGBoost model on a football dataset.
