@@ -1,2 +1,2 @@
-# aws_football
-Create pipelines in AWS
+# Prepareing data
+This project involves experimenting, preparing data, and training an XGBoost model on a football dataset.
