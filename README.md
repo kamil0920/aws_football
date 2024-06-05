@@ -1,2 +1,2 @@
-# aws_football
-Create pipelines in AWS
+# Prepareing data
+Experiment and preapre data aws pipline.
